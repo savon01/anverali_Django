@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+  <h2>Registration</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="form-group">
+      <label for="id_is_customer">Is Customer:</label>
+      <input type="checkbox" name="is_customer" id="id_is_customer">
+    </div>
+    <div class="form-group">
+      <label for="id_contact_info">Contact Info:</label>
+      <input type="text" name="contact_info" id="id_contact_info">
+    </div>
+    <div class="form-group">
+      <label for="id_experience">Experience:</label>
+      <input type="number" name="experience" id="id_experience">
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>

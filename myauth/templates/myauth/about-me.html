@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Me</title>
+</head>
+<body>
+{% if user.is_authenticated %}
+  {% if profile.is_customer %}
+      <h2>Вы зарегистрировались как: Заказчик</h2>
+    {% else %}
+      <h2>Вы зарегистрировались как: Исполнитель</h2>
+    {% endif %}
+
+  <p>Имя: {{ user.username }}</p>
+  <p>Контактные данные: {{ user.profile.contact_info }}</p>
+  <p>Опыт работы: {{ user.profile.experience }} год(а)</p>
+
+    <form method="post" action="{% url 'myauth:delete-user' %}">
+      {% csrf_token %}
+      <button type="submit">Удалить пользователя</button>
+    </form>
+
+    <a href="{% url 'myauth:edit-profile' %}">Редактировать профиль</a>
+
+    <form method="post" action="{% url 'myauth:logout' %}">
+      {% csrf_token %}
+      <button type="submit">Выход</button>
+    </form>
+{% else %}
+<h2>User anonymous</h2>
+{% endif %}
+</body>
+</html>
